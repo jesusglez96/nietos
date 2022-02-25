@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, "index"])->name("index");
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/', [HomeController::class, "index"])->name("index");
+Route::get('/show', [HomeController::class, "show"])->middleware(['auth'])->name('show');
+// Route::get('/', [HomeController::class, "index"])->name("index");
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/create', [HomeController::class, "create"])->name("create");
     Route::get('/admin/modify', [HomeController::class, "modify"])->name("modify");
