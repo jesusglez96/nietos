@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [HomeController::class, "index"])->name("index");
+Route::get('/', [HomeController::class, "welcome"])->name("welcome");
+Route::get('/index', [HomeController::class, "index"])->middleware(['auth'])->name('index');
 Route::get('/show', [HomeController::class, "show"])->middleware(['auth'])->name('show');
 // Route::get('/', [HomeController::class, "index"])->name("index");
 

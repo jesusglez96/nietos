@@ -3,25 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Flight;
+use App\Models\Travel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function welcome()
     {
         return view('welcome');
     }
 
+    public function index()
+    {
+        $flights = Flight::all();
+        return view("index", compact('flights'));
+    }
+
     public function show()
     {
-        // $flights = Flight::select('select * from users where active = ?', [1])();
-        $flights = Flight::table('flights')
-            ->join('airports', 'flights.origin_id', '=', 'airports.id')
-            ->join('airports', 'flights.destiny_id', '=', 'airports.id')
-            ->select('flights.*', 'airports.name', 'flights.city', 'flights.country')
+        $travels = Travel::join('flights', 'travels.flight_id', '=', 'flights.id')
+            ->select('travels.*')
+            ->where('user_id', Auth::user()->getAuthIdentifier())
             ->get();
-
-        // return view("show", compact('flights'));
-        return $flights;
+        return view("show", compact('travels'));
+    }
+    public function create()
+    {
     }
 }
