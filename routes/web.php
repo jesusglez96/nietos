@@ -18,14 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, "welcome"])->name("welcome");
 Route::get('/index', [HomeController::class, "index"])->middleware(['auth'])->name('index');
 Route::get('/show', [HomeController::class, "show"])->middleware(['auth'])->name('show');
-// Route::get('/', [HomeController::class, "index"])->name("index");
+Route::get('/buy/{id}', [HomeController::class, "buy"])->middleware(['auth'])->name('buy');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/create', [HomeController::class, "create"])->name("create");
-    Route::get('/admin/modify', [HomeController::class, "modify"])->name("modify");
+    Route::post('/admin/store', [HomeController::class, "store"])->name("store");
+    Route::get('/admin/modify', [HomeController::class, "modify"])->name("edit");
     Route::get('/admin/delete/{id}', [HomeController::class, "delete"])->name("delete");
 });
+
+
 require __DIR__ . '/auth.php';
