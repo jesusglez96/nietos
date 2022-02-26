@@ -52,7 +52,7 @@
     </nav>
     <div class="container mt-8">
         <h1 class="text-center mb-5">Añadir Nuevo Vuelo</h1>
-        <form action="{{ route('store')}}"  method="post" class="w-75 mx-auto">
+        <form action="{{ route('store') }}" method="post" class="w-75 mx-auto">
             @csrf
             <!-- Origen y destino -->
             <div class="row mb-4 ">
@@ -60,7 +60,7 @@
                     <div class="form-outline">
                         <label class="form-label" for="city_origin">Origen</label>
                         <input type="text" id="city_origin" name="city_origin" class="form-control" />
-                        {{-- @error('city_origin') 
+                        {{-- @error('city_origin')
                         <br>
                         <small>*{{$menssage}}</small>
                         <br>s
