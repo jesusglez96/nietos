@@ -59,7 +59,19 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
-        #TODO: check if works
+        
+        $request->validate([
+            'origin'=>'required',
+            'destiny'=>'required',
+            'country_origin'=>'required',
+            'country_destiny'=>'required',
+            'date'=>'required',
+            'seat_total'=>'required',
+            // 'seat_available'=>'required',
+            'price'=>'required',
+
+        ]);
+
         $newFlight = new Flight();
 
         $newFlight->city_origin = $request->city_origin;
