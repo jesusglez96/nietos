@@ -84,14 +84,14 @@
                                 <td>{{ $flight->price }}</td>
                                 <td class="text-center">
                                     @if (Auth::user()->is_admin == 1)
-                                        <a href="{{ route('edit') }}" class="edit" title="Edit"
-                                            data-toggle="tooltip"><svg style="width:24px;height:24px"
+                                        <a href="{{ route('edit', $flight->id) }}" class="edit"
+                                            title="Edit" data-toggle="tooltip"><svg style="width:24px;height:24px"
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                     d="M16.84,2.73C16.45,2.73 16.07,2.88 15.77,3.17L13.65,5.29L18.95,10.6L21.07,8.5C21.67,7.89 21.67,6.94 21.07,6.36L17.9,3.17C17.6,2.88 17.22,2.73 16.84,2.73M12.94,6L4.84,14.11L7.4,14.39L7.58,16.68L9.86,16.85L10.15,19.41L18.25,11.3M4.25,15.04L2.5,21.73L9.2,19.94L8.96,17.78L6.65,17.61L6.47,15.29" />
                                             </svg></a>
-                                        <a href="{{ route('delete', 1) }}" class="delete" title="Delete"
-                                            data-toggle="tooltip"><svg style="width:24px;height:24px"
+                                        <a href="{{ route('delete', $flight->id) }}" class="delete"
+                                            title="Delete" data-toggle="tooltip"><svg style="width:24px;height:24px"
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                     d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8.46,11.88L9.87,10.47L12,12.59L14.12,10.47L15.53,11.88L13.41,14L15.53,16.12L14.12,17.53L12,15.41L9.88,17.53L8.47,16.12L10.59,14L8.46,11.88M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />

@@ -52,27 +52,30 @@
     </nav>
     <div class="container mt-8">
         <h1 class="text-center mb-5">Añadir Nuevo Vuelo</h1>
-        <form class="w-75 mx-auto">
+        <form action="{{ route('store') }}" method="post" class="w-75 mx-auto">
+
+            @csrf
+
             <!-- Origen y destino -->
             <div class="row mb-4 ">
                 <div class="col">
                     <div class="form-outline">
-                        <label class="form-label" for="origin">Origen</label>
-                        <input type="text" id="origin" name="origin" class="form-control" />
+                        <label class="form-label" for="city_origin">Origen</label>
+                        <input type="text" id="city_origin" name="city_origin" class="form-control" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-outline">
-                        <label class="form-label" for="destiny">Destino</label>
-                        <input type="text" id="destiny" name="destiny" class="form-control" />
+                        <label class="form-label" for="country_origin">Pais de Origen</label>
+                        <input type="text" id="country_origin" name="country_origin" class="form-control" />
                     </div>
                 </div>
             </div>
             <div class="row mb-4 ">
                 <div class="col">
                     <div class="form-outline">
-                        <label class="form-label" for="country_origin">Pais de Origen</label>
-                        <input type="text" id="country_origin" name="country_origin" class="form-control" />
+                        <label class="form-label" for="city_destiny">Destino</label>
+                        <input type="text" id="city_destiny" name="city_destiny" class="form-control" />
                     </div>
                 </div>
                 <div class="col">
@@ -86,7 +89,7 @@
             <!-- Fecha input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="date">Fecha</label>
-                <input type="date" id="date" name="date" class="form-control" />
+                <input type="datetime-local" id="date" name="date" class="form-control" />
             </div>
 
             <!-- Asientos input -->
@@ -104,7 +107,7 @@
             <!-- Precio input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="price">Precio</label>
-                <input type="number" id="price" name="price" class="form-control" />
+                <input type="number" step="0.01" id="price" name="price" class="form-control" />
             </div>
 
             <!-- Submit button -->

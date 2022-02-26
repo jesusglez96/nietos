@@ -20,10 +20,20 @@ class HomeController extends Controller
         return view("index", compact('flights'));
     }
 
-    public function buy()
+    public function buy($id_flight)
     {
-        #TODO: implement this method
+        #TODO: check if works
+        $newTravel = new Travel();
+
+        $newTravel->flight_id = $id_flight;
+        $newTravel->user_id = Auth::user()->getAuthIdentifier();
+
+        $newTravel->save();
+
+        return redirect()->route("index");
     }
+
+
 
     public function show()
     {
@@ -33,12 +43,23 @@ class HomeController extends Controller
             ->get();
         return view("show", compact('travels'));
     }
+
+    public function remove($id_flight)
+    {
+    }
+
     public function create()
     {
         return view('create');
     }
+
+    public function delete()
+    {
+    }
+
     public function store(Request $request)
     {
+        #TODO: check if works
         $newFlight = new Flight();
 
         $newFlight->city_origin = $request->city_origin;

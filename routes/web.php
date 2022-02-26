@@ -19,6 +19,7 @@ Route::get('/', [HomeController::class, "welcome"])->name("welcome");
 Route::get('/index', [HomeController::class, "index"])->middleware(['auth'])->name('index');
 Route::get('/show', [HomeController::class, "show"])->middleware(['auth'])->name('show');
 Route::get('/buy/{id}', [HomeController::class, "buy"])->middleware(['auth'])->name('buy');
+Route::get('/remove/{id}', [HomeController::class, "remove"])->middleware(['auth'])->name('remove');
 
 
 Route::group(['middleware' => 'admin'], function () {
