@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Flight;
 use App\Models\Travel;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 class HomeController extends Controller
 {
     public function index()
@@ -52,8 +50,11 @@ class HomeController extends Controller
             $flight->seat_available += 1;
             $flight->save();
             $travel->delete();
+            return redirect()->route("show")->with("remove", true);
         }
 
-        return redirect()->route("show");
+        return redirect()->route("show")->with("remove", false);
     }
+
+
 }
