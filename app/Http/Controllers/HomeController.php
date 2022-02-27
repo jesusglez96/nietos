@@ -4,18 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Flight;
 use App\Models\Travel;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\validacionCiudad;
 class HomeController extends Controller
 {
-
-
-    public function welcome()
-    {
-        return view('welcome');
-    }
-
     public function index()
     {
         $flights = Flight::all();
@@ -24,62 +15,46 @@ class HomeController extends Controller
 
     public function buy($id_flight)
     {
-        #TODO: check if works
-        $newTravel = new Travel();
+        $flight = Flight::find($id_flight);
+        if ($flight) {
+            if ($flight->seat_available > 0) {
+                $flight->seat_available -= 1;
+                $newTravel = new Travel();
 
-        $newTravel->flight_id = $id_flight;
-        $newTravel->user_id = Auth::user()->getAuthIdentifier();
+                $newTravel->flight_id = $id_flight;
+                $newTravel->user_id = Auth::user()->getAuthIdentifier();
 
-        $newTravel->save();
+                $flight->save();
+                $newTravel->save();
 
+                return redirect()->route("index");
+            }
+        }
         return redirect()->route("index");
     }
-
-
 
     public function show()
     {
         $travels = Travel::join('flights', 'travels.flight_id', '=', 'flights.id')
-            ->select('travels.*', "flights.*")
+            ->select('travels.id as travel_id', "travels.user_id", "travels.flight_id", "flights.*")
             ->where('user_id', Auth::user()->getAuthIdentifier())
             ->get();
         return view("show", compact('travels'));
     }
 
-    public function remove($id_flight)
+    public function remove($id_travel)
     {
+        $travel = Travel::find($id_travel);
+        if ($travel) {
+            $flight = Flight::find($travel->flight_id);
+            $flight->seat_available += 1;
+            $flight->save();
+            $travel->delete();
+            return redirect()->route("show")->with("remove", true);
+        }
+
+        return redirect()->route("show")->with("remove", false);
     }
 
-    public function create()
-    {
-        return view('create');
-    }
-
-    public function delete()
-    {
-    }
-
-    public function store(validacionCiudad $request)
-    {
-
-        $newFlight = new Flight();
-        
-        
-        $newFlight->city_origin = $request->city_origin;
-        $newFlight->country_origin = $request->country_origin;
-        $newFlight->city_destiny = $request->city_destiny;
-        $newFlight->country_destiny = $request->country_destiny;
-        $newFlight->date = $request->date;
-        $newFlight->seat_total = $request->seat_total;
-        $newFlight->seat_available = $request->seat_total;
-        $newFlight->price = $request->price;
-        
-        $newFlight->save();
-        
-        return redirect()->route("create");
-        
-        
-        
-    }
 
 }

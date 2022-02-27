@@ -28,33 +28,10 @@
 </head>
 
 <body>
-    <header class="py-5">
-        <h1 class="text-center">
-            Nieto's <span class="text-primary">Travels</span>
-        </h1>
-    </header>
-    <!-- barra de navegacion -->
-    <nav class="navbar navbar-expand-lg navbar-light border-top mb-5">
-        <div class="container-fluid">
-            <a class="navbar-brand fs-2 fw-bold text-primary text-uppercase d-lg-none"
-                href="{{ route('index') }}">Nieto's Travels</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav container d-md-row justify-content-md-between">
-                    <a class="text-dark text-decoration-none " aria-current="page"
-                        href="{{ route('index') }}">Inicio</a>
-                    <a class="text-dark text-decoration-none " href="{{ route('show') }}">Mis Vuelos</a>
-                    <a class="text-dark text-decoration-none " href="{{ route('create') }}">Crear Vuelos</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <x-nav></x-nav>
     <div class="container mt-8">
         <h1 class="text-center mb-5">Añadir Nuevo Vuelo</h1>
-        <form action="{{ route('store')}}"  method="post" class="w-75 mx-auto">
+        <form action="{{ route('store') }}" method="post" class="w-75 mx-auto">
             @csrf
             <!-- Origen y destino -->
             <div class="row mb-4 ">
@@ -157,7 +134,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
-    {{-- <script type="text/javascript" src="../js/validacion.js"></script> --}}
 </body>
 
 </html>

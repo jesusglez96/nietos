@@ -15,30 +15,8 @@
 </head>
 
 <body>
-    <header class="py-5">
-        <h1 class="text-center">
-            Nieto's <span class="text-primary">Flights</span>
-        </h1>
-    </header>
-    <!-- barra de navegacion -->
-    <nav class="navbar navbar-expand-lg navbar-light border-top">
-        <div class="container-fluid">
-            <a class="navbar-brand fs-2 fw-bold text-primary text-uppercase d-lg-none"
-                href="{{ route('index') }}">Nieto's Flights</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav container d-md-row justify-content-md-between">
-                    <a class="text-dark text-decoration-none " aria-current="page"
-                        href="{{ route('index') }}">Inicio</a>
-                    <a class="text-dark text-decoration-none " href="{{ route('show') }}">Mis Vuelos</a>
-                    <a class="text-dark text-decoration-none " href="{{ route('create') }}">Crear Vuelos</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <x-nav></x-nav>
+
     <div class="container-xxl">
         <div class="table-responsive w-100">
             <div class="table-wrapper w-100">
@@ -47,10 +25,11 @@
                         <div class="col-sm-8">
                             <h2>Vuelos <b>Disponibles</b></h2>
                         </div>
-                        <div class="col-sm-4">
-                            <a href="{{ route('create') }}" class="btn btn-info add-new"><i
-                                    class="fa fa-plus"></i> Add New</a>
-                        </div>
+                        @if (Auth::user()->is_admin == 1)
+                            <div class="col-sm-4">
+                                <a href="{{ route('create') }}" class="btn btn-info add-new">Crear Vuelo</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <table class="table table-bordered ">
@@ -84,7 +63,7 @@
                                 <td>{{ $flight->price }}</td>
                                 <td class="text-center">
                                     @if (Auth::user()->is_admin == 1)
-                                        <a href="{{ route('edit', $flight->id) }}" class="edit"
+                                        <a href="{{ route('modify', $flight->id) }}" class="edit"
                                             title="Edit" data-toggle="tooltip"><svg style="width:24px;height:24px"
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
@@ -98,8 +77,9 @@
                                             </svg>
                                         </a>
                                     @else
-                                        <a href="{{ route('buy', $flight->id) }}" class="buy" title="buy"
-                                            data-toggle="tooltip"><svg style="width:24px;height:24px"
+                                        <a href="{{ route('buy', $flight->id) }}"
+                                            @if ($flight->seat_available <= 0) class="isDisabled" @else class="buy" @endif
+                                            title="buy" data-toggle="tooltip"><svg style="width:24px;height:24px"
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                     d="M10,0V4H8L12,8L16,4H14V0M1,2V4H3L6.6,11.59L5.25,14.04C5.09,14.32 5,14.65 5,15A2,2 0 0,0 7,17H19V15H7.42C7.29,15 7.17,14.89 7.17,14.75L7.2,14.63L8.1,13H15.55C16.3,13 16.96,12.59 17.3,11.97L21.16,4.96L19.42,4H19.41L18.31,6L15.55,11H8.53L8.4,10.73L6.16,6L5.21,4L4.27,2M7,18A2,2 0 0,0 5,20A2,2 0 0,0 7,22A2,2 0 0,0 9,20A2,2 0 0,0 7,18M17,18A2,2 0 0,0 15,20A2,2 0 0,0 17,22A2,2 0 0,0 19,20A2,2 0 0,0 17,18Z" />

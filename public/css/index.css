@@ -1,7 +1,7 @@
 header {
-    background-image: url("../img/1.jpg");
+    background-image: url("../img/7.jpg");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom;
     background-size: cover;
 }
 
@@ -105,4 +105,12 @@ table.table .form-control.error {
 
 table.table td .add {
     display: none;
+}
+
+.isDisabled {
+    color: grey;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+    pointer-events: none;
 }
