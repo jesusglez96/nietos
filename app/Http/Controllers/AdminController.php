@@ -15,8 +15,8 @@ class AdminController extends Controller
     {
 
         $request->validate([
-            'origin' => 'required',
-            'destiny' => 'required',
+            'city_origin' => 'required',
+            'city_destiny' => 'required',
             'country_origin' => 'required',
             'country_destiny' => 'required',
             'date' => 'required',
@@ -53,13 +53,14 @@ class AdminController extends Controller
     public function edit(Request $request)
     {
         $request->validate([
-            'origin' => 'required',
-            'destiny' => 'required',
+            "id_flight" => "required",
+            'city_origin' => 'required',
+            'city_destiny' => 'required',
             'country_origin' => 'required',
             'country_destiny' => 'required',
             'date' => 'required',
             'seat_total' => 'required',
-            // 'seat_available'=>'required',
+            'seat_available' => 'required',
             'price' => 'required',
 
         ]);
@@ -73,12 +74,15 @@ class AdminController extends Controller
             $flight->country_destiny = $request->country_destiny;
             $flight->date = $request->date;
             $flight->seat_total = $request->seat_total;
-            $flight->seat_available = $request->seat_total;
+            $flight->seat_available = $request->seat_available;
             $flight->price = $request->price;
 
             $flight->save();
+            // echo "Si";
+            return redirect()->route("modify", ['id_flight' => $flight->id])->with("modificado", true);
         }
-        return redirect()->route("modify");
+        // echo "No";
+        return redirect()->route("modify", ['id_flight' => $flight->id])->with("modificado", false);
     }
     public function delete($id_flight)
     {

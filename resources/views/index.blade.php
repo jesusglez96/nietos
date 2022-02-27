@@ -15,7 +15,8 @@
 </head>
 
 <body>
-    <header class="py-5">
+    <x-nav></x-nav>
+    {{-- <header class="py-5">
         <h1 class="text-center">
             Nieto's <span class="text-primary">Flights</span>
         </h1>
@@ -45,7 +46,7 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> --}}
     <div class="container-xxl">
         <div class="table-responsive w-100">
             <div class="table-wrapper w-100">
@@ -92,7 +93,7 @@
                                 <td>{{ $flight->price }}</td>
                                 <td class="text-center">
                                     @if (Auth::user()->is_admin == 1)
-                                        <a href="{{ route('edit', $flight->id) }}" class="edit"
+                                        <a href="{{ route('modify', $flight->id) }}" class="edit"
                                             title="Edit" data-toggle="tooltip"><svg style="width:24px;height:24px"
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
