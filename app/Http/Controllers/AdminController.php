@@ -55,15 +55,15 @@ class AdminController extends Controller
         $request->validate([
             "id_flight" => "required",
             'city_origin' => 'required',
-            'city_destiny' => 'required',
+            'city_destiny' => "required|different:city_origin",
             'country_origin' => 'required',
             'country_destiny' => 'required',
-            'date' => 'required',
+            'date' => 'required|date|after:tomorrow',
             'seat_total' => 'required',
-            'seat_available' => 'required',
-            'price' => 'required',
+            'seat_available' => 'required|between:0, seat_total',
+            'price' => 'required|min:0',
 
-        ]);
+        ],);
 
         $flight = Flight::find($request->id_flight);
 

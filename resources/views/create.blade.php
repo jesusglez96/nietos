@@ -11,7 +11,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
         header {
-            background-image: url("img/4.jpg");
+            background-image: url("../img/4.jpg");
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -26,30 +26,7 @@
 </head>
 
 <body>
-    <header class="py-5">
-        <h1 class="text-center">
-            Nieto's <span class="text-primary">Travels</span>
-        </h1>
-    </header>
-    <!-- barra de navegacion -->
-    <nav class="navbar navbar-expand-lg navbar-light border-top mb-5">
-        <div class="container-fluid">
-            <a class="navbar-brand fs-2 fw-bold text-primary text-uppercase d-lg-none"
-                href="{{ route('index') }}">Nieto's Travels</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav container d-md-row justify-content-md-between">
-                    <a class="text-dark text-decoration-none " aria-current="page"
-                        href="{{ route('index') }}">Inicio</a>
-                    <a class="text-dark text-decoration-none " href="{{ route('show') }}">Mis Vuelos</a>
-                    <a class="text-dark text-decoration-none " href="{{ route('create') }}">Crear Vuelos</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <x-nav></x-nav>
     <div class="container mt-8">
         <h1 class="text-center mb-5">Añadir Nuevo Vuelo</h1>
         <form action="{{ route('store') }}" method="post" class="w-75 mx-auto">

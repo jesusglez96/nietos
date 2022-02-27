@@ -10,6 +10,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/index.css">
+    <style>
+        header {
+            background-image: url("../../img/6.jpg");
+            background-repeat: no-repeat;
+            background-position: top;
+            background-size: cover;
+        }
+
+        body {
+            background: #F5F7FA;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+    </style>
     {{-- <style>
         header {
             background-image: url("img/4.jpg");
@@ -28,7 +42,15 @@
 
 <body>
     <x-nav></x-nav>
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     @if (session('modificado') == true)
         <div class="alert alert-success text-center">
             <span>Vuelo modificado con exito!</span>
@@ -72,6 +94,7 @@
                         <input type="text" id="city_destiny" name="city_destiny" class="form-control"
                             value="{{ $flight->city_destiny }}" />
                     </div>
+
                 </div>
                 <div class="col">
                     <div class="form-outline">
@@ -108,6 +131,8 @@
                 <label class="form-label" for="price">Precio</label>
                 <input type="number" step="0.01" id="price" name="price" class="form-control"
                     value="{{ $flight->price }}" />
+
+
             </div>
             <!-- Submit button -->
             <button type="submit" name="submit" class="btn w-100 btn-dark btn-block mb-4">Modificar Vuelo</button>
