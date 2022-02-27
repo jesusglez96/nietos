@@ -6,9 +6,11 @@ use App\Models\Flight;
 use App\Models\Travel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\validacionCiudad;
 class HomeController extends Controller
 {
+
+
     public function welcome()
     {
         return view('welcome');
@@ -57,23 +59,12 @@ class HomeController extends Controller
     {
     }
 
-    public function store(Request $request)
+    public function store(validacionCiudad $request)
     {
-        
-        $request->validate([
-            'origin'=>'required',
-            'destiny'=>'required',
-            'country_origin'=>'required',
-            'country_destiny'=>'required',
-            'date'=>'required',
-            'seat_total'=>'required',
-            // 'seat_available'=>'required',
-            'price'=>'required',
-
-        ]);
 
         $newFlight = new Flight();
-
+        
+        
         $newFlight->city_origin = $request->city_origin;
         $newFlight->country_origin = $request->country_origin;
         $newFlight->city_destiny = $request->city_destiny;
@@ -82,9 +73,13 @@ class HomeController extends Controller
         $newFlight->seat_total = $request->seat_total;
         $newFlight->seat_available = $request->seat_total;
         $newFlight->price = $request->price;
-
+        
         $newFlight->save();
-
+        
         return redirect()->route("create");
+        
+        
+        
     }
+
 }
