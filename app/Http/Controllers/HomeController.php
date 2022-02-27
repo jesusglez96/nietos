@@ -52,8 +52,9 @@ class HomeController extends Controller
             $flight->seat_available += 1;
             $flight->save();
             $travel->delete();
+            return redirect()->route("show")->with("remove", true);
         }
 
-        return redirect()->route("show");
+        return redirect()->route("show")->with("remove", false);
     }
 }
