@@ -31,7 +31,7 @@ class validacionCiudad extends FormRequest
             'date'=>'required|date|after:tomorrow',
             'seat_total'=>'required',
             'seat_available'=>'required|between:0,seat_total',
-            'price'=>'required|min:0',
+            'price'=>'required|numeric|min:0',
         ];
     }
 

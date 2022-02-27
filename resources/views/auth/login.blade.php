@@ -1,9 +1,8 @@
 <x-guest-layout>
     <x-auth-card>
+
         <x-slot name="logo">
-            <a href="/">
-                <img class="img-fluid d-block" src="img/7.jpg" alt="">
-            </a>
+            <img class="img-fluid" src="img/7.jpg" alt="">
         </x-slot>
 
         <!-- Session Status -->
