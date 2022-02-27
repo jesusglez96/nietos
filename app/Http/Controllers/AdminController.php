@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Flight;
 use Illuminate\Http\Request;
+use App\Http\Requests\validacionCiudad;
 
 class AdminController extends Controller
 {
@@ -11,23 +12,12 @@ class AdminController extends Controller
     {
         return view('create');
     }
-    public function store(Request $request)
+    public function store(validacionCiudad $request)
     {
 
-        $request->validate([
-            'city_origin' => 'required',
-            'city_destiny' => 'required',
-            'country_origin' => 'required',
-            'country_destiny' => 'required',
-            'date' => 'required',
-            'seat_total' => 'required',
-            // 'seat_available'=>'required',
-            'price' => 'required',
-
-        ]);
-
         $newFlight = new Flight();
-
+        
+        
         $newFlight->city_origin = $request->city_origin;
         $newFlight->country_origin = $request->country_origin;
         $newFlight->city_destiny = $request->city_destiny;
@@ -36,10 +26,11 @@ class AdminController extends Controller
         $newFlight->seat_total = $request->seat_total;
         $newFlight->seat_available = $request->seat_total;
         $newFlight->price = $request->price;
-
+        
         $newFlight->save();
-
+        
         return redirect()->route("create");
+        
     }
 
     public function modify($id_flight)
@@ -50,20 +41,20 @@ class AdminController extends Controller
         else return redirect()->route("index");
     }
 
-    public function edit(Request $request)
+    public function edit(validacionCiudad $request)
     {
-        $request->validate([
-            "id_flight" => "required",
-            'city_origin' => 'required',
-            'city_destiny' => "required|different:city_origin",
-            'country_origin' => 'required',
-            'country_destiny' => 'required',
-            'date' => 'required|date|after:tomorrow',
-            'seat_total' => 'required',
-            'seat_available' => 'required|between:0, seat_total',
-            'price' => 'required|min:0',
+        // $request->validate([
+        //     "id_flight" => "required",
+        //     'city_origin' => 'required',
+        //     'city_destiny' => "required|different:city_origin",
+        //     'country_origin' => 'required',
+        //     'country_destiny' => 'required',
+        //     'date' => 'required|date|after:tomorrow',
+        //     'seat_total' => 'required',
+        //     'seat_available' => 'required|between:0, seat_total',
+        //     'price' => 'required|min:0',
 
-        ],);
+        // ],);
 
         $flight = Flight::find($request->id_flight);
 
