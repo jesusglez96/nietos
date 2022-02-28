@@ -27,7 +27,7 @@
                         </div>
                         @if (Auth::user()->is_admin == 1)
                             <div class="col-sm-4">
-                                <a href="{{ route('create') }}" class="btn btn-info add-new">Crear Vuelo</a>
+                                <a href="{{ route('create') }}" class="btn btn-warning add-new">Crear Vuelo</a>
                             </div>
                         @endif
                     </div>
