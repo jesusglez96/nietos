@@ -121,3 +121,9 @@ table.table td .add {
     text-decoration: none;
     pointer-events: none;
 }
+.logo{
+    background-image: url("img/7.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+}
