@@ -16,8 +16,8 @@ class AdminController extends Controller
     {
 
         $newFlight = new Flight();
-        
-        
+
+
         $newFlight->city_origin = $request->city_origin;
         $newFlight->country_origin = $request->country_origin;
         $newFlight->city_destiny = $request->city_destiny;
@@ -26,11 +26,9 @@ class AdminController extends Controller
         $newFlight->seat_total = $request->seat_total;
         $newFlight->seat_available = $request->seat_total;
         $newFlight->price = $request->price;
-        
-        $newFlight->save();
-        
-        return redirect()->route("create");
-        
+
+        if ($newFlight->save())
+            return redirect()->route("create");
     }
 
     public function modify($id_flight)

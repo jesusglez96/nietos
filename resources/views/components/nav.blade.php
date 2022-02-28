@@ -1,9 +1,10 @@
 <header class="d-grid py-5">
-    <div class="row">
-        <h1 class="col-6 col-start-2 text-center">
-            Nieto's <span class="text-success">Flights</span>
+    <div class="row align-items-center">
+        <h1 class="col-6 col-start-2 text-center text-white fs-1">
+            Nieto's <span class="text-warning">Flights</span>
         </h1>
-        <h3 class="col text-center">Bienvenido {{ Str::ucfirst(Auth::user()->name) }}</h3>
+        <h3 class="col text-center text-white fs-3">Bienvenido <span
+                class="text-warning">{{ Str::ucfirst(Auth::user()->name) }}</span></h3>
 
     </div>
 
@@ -27,7 +28,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a class="btn btn-outline-danger text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </a>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+
 use App\Http\Request\Date;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -15,7 +16,7 @@ class validacionCiudad extends FormRequest
     {
         return true;
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -34,5 +35,4 @@ class validacionCiudad extends FormRequest
             'price'=>'required|numeric|min:0',
         ];
     }
-
 }

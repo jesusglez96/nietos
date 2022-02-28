@@ -5,9 +5,16 @@ header {
     background-size: cover;
 }
 
+header h1 {
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+header h3 {
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
 body {
     background: #f5f7fa;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Lato", sans-serif;
 }
 
 .table-wrapper {
