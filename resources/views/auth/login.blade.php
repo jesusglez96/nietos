@@ -1,10 +1,6 @@
 <x-guest-layout>
     <x-auth-card>
 
-        <x-slot name="logo">
-            <img class="img-fluid" src="img/7.jpg" alt="">
-        </x-slot>
-
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
