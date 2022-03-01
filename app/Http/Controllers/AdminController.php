@@ -12,8 +12,17 @@ class AdminController extends Controller
     {
         return view('create');
     }
-    public function store(validacionCiudad $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'city_origin' => 'required',
+            'city_destiny' => 'required|different:city_origin',
+            'country_origin' => 'required',
+            'country_destiny' => 'required',
+            'date' => 'required|date|after:tomorrow',
+            'seat_total' => 'required',
+            'price' => 'required|numeric|min:0',
+        ]);
 
         $newFlight = new Flight();
 
@@ -28,7 +37,8 @@ class AdminController extends Controller
         $newFlight->price = $request->price;
 
         if ($newFlight->save())
-            return redirect()->route("create");
+            return redirect()->route("create")->with("creado", true);
+        return redirect()->route("create")->with("creado", false);
     }
 
     public function modify($id_flight)
@@ -65,8 +75,10 @@ class AdminController extends Controller
     {
         $flight = Flight::find($id_flight);
         if ($flight) {
-            $flight->delete();
+            if ($flight->delete()) {
+                return redirect()->route('index')->with("borrado", true);
+            }
+            return redirect()->route('index')->with("borrado", false);
         }
-        return redirect()->route('index');
     }
 }

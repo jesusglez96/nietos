@@ -23,25 +23,25 @@
 
 <body>
     <x-nav></x-nav>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if (session('modificado') == true)
+        <div class="alert alert-success text-center">
+            <span>Vuelo modificado con exito!</span>
+        </div>
+    @elseif (session('modificado') != null && session('modificado') == false)
+        <div class="alert alert-danger text-center">
+            <span class="text-center">Error al modificar vuelo</span>
+        </div>
+    @endif
     <div class="container mt-8">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        @if (session('modificado') == true)
-            <div class="alert alert-success text-center">
-                <span>Vuelo modificado con exito!</span>
-            </div>
-        @elseif (session('modificado') != null && session('modificado') == false)
-            <div class="alert alert-danger text-center">
-                <span class="text-center">Error al modificar vuelo</span>
-            </div>
-        @endif
         <h1 class="text-center mb-5">Modificar Vuelo</h1>
         <form action="{{ route('edit') }}" method="post" class="w-75 mx-auto">
             @csrf

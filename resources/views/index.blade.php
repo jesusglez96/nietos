@@ -16,7 +16,15 @@
 
 <body>
     <x-nav></x-nav>
-
+    @if (session('borrado') == true)
+        <div class="alert alert-success text-center">
+            <span>Vuelo borrado con exito!</span>
+        </div>
+    @elseif (session('borrado') != null && session('borrado') == false)
+        <div class="alert alert-danger text-center">
+            <span class="text-center">Error al borrar vuelo</span>
+        </div>
+    @endif
     <div class="container-xxl">
         <div class="table-responsive w-100">
             <div class="table-wrapper w-100">
