@@ -39,7 +39,7 @@
                     {{ __('Log in') }}
                 </x-button>
                 @if (Route::has('password.request'))
-                    <a class="text-center text-primary" href="{{ route('password.request') }}">
+                    <a class="mt-1 text-center text-dark" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('country_origin');
             $table->string('city_destiny');
             $table->string('country_destiny');
-            $table->dateTime("date")->useCurrent(false);
+            $table->dateTime("date")->useCurrent(false); // No se actualiza por defecto
             $table->integer("seat_total");
             $table->integer("seat_available");
             $table->float("price");

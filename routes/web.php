@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Middleware Auth comprueba si esta autentificado
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +25,7 @@ Route::get('/buy/{id_flight}', [HomeController::class, "buy"])->middleware(['aut
 Route::get('/show', [HomeController::class, "show"])->middleware(['auth'])->name('show');
 Route::get('/remove/{id_travel}', [HomeController::class, "remove"])->middleware(['auth'])->name('remove');
 
+// Middleware Admin comprueba si es administrador
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/create', [AdminController::class, "create"])->name("create");

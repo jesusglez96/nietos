@@ -25,6 +25,15 @@
 
 <body>
     <x-nav></x-nav>
+    @if (session('remove') == true)
+        <div class="alert alert-success text-center">
+            <span>Vuelo eliminado con exito!</span>
+        </div>
+    @elseif (session('remove') != null && session('remove') == false)
+        <div class="alert alert-danger text-center">
+            <span class="text-center">Error al eliminar vuelo</span>
+        </div>
+    @endif
     <div class="container-xxl">
         <div class="table-responsive w-100">
             <div class="table-wrapper w-100">

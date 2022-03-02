@@ -1,13 +1,11 @@
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <img class="img-fluid" src="img/7.jpg" alt="">
-        </x-slot>
+
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}" >
+        <form method="POST" action="{{ route('register') }}">
             @csrf
 
             <!-- Name -->
@@ -49,13 +47,13 @@
                     required />
             </div>
             <div class="d-flex flex-column aling-items-center justify-content-start mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
 
                 <x-button class="ml-4">
                     {{ __('Register') }}
                 </x-button>
+                <a class="my-2 text-center text-dark" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
             </div>
         </form>
     </x-auth-card>
